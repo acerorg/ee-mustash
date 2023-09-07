@@ -99,7 +99,7 @@ abstract class Mustash_base {
      * @var string
      * @access private
      */
-    private $mod_docs_url;
+    protected $mod_docs_url;
 	// --------------------------------------------------------------------
 	// METHODS
 	// --------------------------------------------------------------------

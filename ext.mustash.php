@@ -38,8 +38,12 @@ class Mustash_ext extends Mustash_base {
 	 * @access     private
 	 */
 	private static $plugin_hooks = array();
-		
-	/**
+    private string $settings_exist;
+    private string $description;
+    private string $version;
+    private string $name;
+
+    /**
 	 * Constructor
 	 *
 	 * @param 	mixed	Settings array or empty string if none exist.
@@ -80,10 +84,10 @@ class Mustash_ext extends Mustash_base {
 	/**
 	 * Call magic method
 	 *
-	 * @param string	 $name The method name being called
-	 * @param array		 $arguments The method call arguments
+	 * @param string $name The method name being called
+	 * @param array $arguments The method call arguments
 	 */
-	public function __call($name, $arguments)
+	public function __call(string $name, array $arguments)
 	{
 		if (strpos($name, ':') !== FALSE)
 		{
@@ -147,8 +151,8 @@ class Mustash_ext extends Mustash_base {
 	 * @param 	string	String value of current version
 	 * @return 	mixed	void on update / FALSE if none
 	 */
-	public function update_extension($current = '')
-	{
+	public function update_extension($current = ''): mixed
+    {
 		if ($current == '' OR (version_compare($current, $this->mod_version) === 0))
 		{
 			return FALSE; // up to date
