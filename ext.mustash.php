@@ -37,11 +37,11 @@ class Mustash_ext extends Mustash_base {
 	 * @var        array
 	 * @access     private
 	 */
-	private static $plugin_hooks = array();
-    private string $settings_exist;
-    private string $description;
-    private string $version;
-    private string $name;
+	private static array $plugin_hooks = array();
+    public string $settings_exist;
+    public string $description;
+    public string $version;
+    public string $name;
 
     /**
 	 * Constructor
@@ -151,7 +151,7 @@ class Mustash_ext extends Mustash_base {
 	 * @param 	string	String value of current version
 	 * @return 	mixed	void on update / FALSE if none
 	 */
-	public function update_extension($current = ''): mixed
+	public function update_extension($current = ''): bool
     {
 		if ($current == '' OR (version_compare($current, $this->mod_version) === 0))
 		{
@@ -161,6 +161,8 @@ class Mustash_ext extends Mustash_base {
 		// update table row with current version
 		ee()->db->where('class', __CLASS__);
 		ee()->db->update('extensions', array('version' => $this->mod_version));
+
+        return true;
 	}
 	
 }
